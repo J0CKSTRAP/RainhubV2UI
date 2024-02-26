@@ -1399,18 +1399,20 @@ end)
 
 
 local Rain = Instances.RainV2
+Rain.Enabled = false
 if UserInputService:GetPlatform() ~= Enum.Platform.Android or Enum.Platform.IOS then 
 	local closebutton = Instance.new("TextButton")
-	closebutton.Parent = cloneref(CoreGui)
+	closebutton.Parent = Rain
+	closebutton.Visible = true
 	closebutton.MouseButton1Click:Connect(function()
 		Rain.Enabled = true
+		closebutton.Visible = false
 	end)
 	Instances.UiScale.Scale = 0.5
-	if Instances.Window.Visible == false or Rain.Enabled == false then
-		closebutton.Visible = true
-	else
-		closebutton.Visible = false
-	end
+	
+		
+	
+	
 else
 	Instances.UiScale.Scale = 1
 end
@@ -1657,7 +1659,7 @@ function Interface:BeginMenu(menu_options)
 			task.wait(.5)
 
 			Rain.Enabled = false
-
+			closebutton.Visible = false
 			for i, v in pairs(Connections) do 
 				v:Disconnect()
 			end
