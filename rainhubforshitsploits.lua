@@ -29,6 +29,7 @@ local interface_name = encode(tostring(Players.LocalPlayer.UserId))]]--
 
 local Instances = {
 	RainV2 = Instance.new("ScreenGui"),
+	UiScale = Instance.new("UIScale"),
 	Window = Instance.new("Frame"),
 	WCorner = Instance.new("UICorner"),
 	Navigation = Instance.new("Frame"),
@@ -193,6 +194,7 @@ local Instances = {
 
 Instances.RainV2.Name = "RainV2"
 
+Instances.UiScale.Parent = Instances.RainV2
 
 Instances.Window.Name = "Window"
 Instances.Window.Parent = Instances.RainV2
@@ -1397,6 +1399,21 @@ end)
 
 
 local Rain = Instances.RainV2
+if UserInputService:GetPlatform() ~= Enum.Platform.Android or Enum.Platform.IOS then 
+	local closebutton = Instance.new("TextButton")
+	closebutton.Parent = cloneref(CoreGui)
+	closebutton.MouseButton1Click:Connect(function()
+		Rain.Enabled = true
+	end)
+	Instances.UiScale.Scale = 0.5
+	if Instances.Window.Visible == false or Rain.Enabled == false then
+		closebutton.Visible = true
+	else
+		closebutton.Visible = false
+	end
+else
+	Instances.UiScale.Scale = 1
+end
 Rain.Name = "rain"
 function Interface:BeginMenu(menu_options)
 	if not (Rain.Enabled) then
@@ -1592,7 +1609,7 @@ function Interface:BeginMenu(menu_options)
 
 	if (Navigation:WaitForChild("CloseInterface")) then
 		local closeInterface = Navigation.CloseInterface
-
+		
 		closeInterface:FindFirstChild("CIStroke").Transparency = 1
 		closeInterface:FindFirstChild("CIActivator").Position = UDim2.new(0.5, 0, 0.5, 0)
 
@@ -1639,7 +1656,7 @@ function Interface:BeginMenu(menu_options)
 
 			task.wait(.5)
 
-			Rain:Destroy()
+			Rain.Enabled = false
 
 			for i, v in pairs(Connections) do 
 				v:Disconnect()
