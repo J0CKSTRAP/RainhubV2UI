@@ -31,7 +31,6 @@ local Instances = {
 	RainV2 = Instance.new("ScreenGui"),
 	UiScale = Instance.new("UIScale"),
 	Window = Instance.new("Frame"),
-	MobileCloseButton = nil,
 	WCorner = Instance.new("UICorner"),
 	Navigation = Instance.new("Frame"),
 	NCorner = Instance.new("UICorner"),
@@ -1404,32 +1403,26 @@ UserInputService.InputChanged:Connect(function(input)
 end)
 
 
-if UserInputService:GetPlatform() ~= Enum.Platform.Android or Enum.Platform.IOS then 
-	Instances.MobileCloseButton = Instance.new("TextButton")
-	Instances.MobileCloseButton.Parent = Instances.RainV2
-	Instances.MobileCloseButton.Visible = true
-	Instances.MobileCloseButton.Text = 'RainHub'
-	Instances.MobileCloseButton.Size = UDim2.new(0, 82, 0, 26)
-	Instances.MobileCloseButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Instances.MobileCloseButton.BackgroundTransparency = 0.25
-	Instances.MobileCloseButton.Position = UDim2.new(0.858053505, 0, 0.24039863, 0)
-	Instances.MobileCloseButton.BorderSizePixel = 0
-	Instances.MobileCloseButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-	Instances.MobileCloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Instances.MobileCloseButton.TextSize = 14
-	Instances.MobileCloseButton.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)	
-	Instances.MobileCloseButton.MouseButton1Click:Connect(function()
-		Rain.Enabled = true
-		Instances.MobileCloseButton.Visible = false
-	end)
 
+local Rain = Instances.RainV2
+Rain.Enabled = false
+if UserInputService:GetPlatform() ~= Enum.Platform.Android or Enum.Platform.IOS then 
+	local closebutton = Instance.new("TextButton")
+	closebutton.Parent = Rain
+	closebutton.Visible = true
+	closebutton.MouseButton1Click:Connect(function()
+		Rain.Enabled = true
+		closebutton.Visible = false
+	end)
 	Instances.UiScale.Scale = 0.5
+	
+		
+	
+	
 else
 	Instances.UiScale.Scale = 1
 end
-
-Instances.RainV2.Name = "rain"
-
+Rain.Name = "rain"
 function Interface:BeginMenu(menu_options)
 	if not (Rain.Enabled) then
 		Rain.Enabled = true
@@ -1649,10 +1642,6 @@ function Interface:BeginMenu(menu_options)
 		end)
 
 		Connections["close_interface"] = closeInterface:FindFirstChild("CIActivator").MouseButton1Click:Connect(function()
-			if Instances.MobileCloseButton ~= nil and (not Instances.MobileCloseButton.Visible) then 
-				Instances.MobileCloseButton.Visible = true
-			end
-
 			for i, v in pairs(Rain:GetDescendants()) do 
 				if (v:IsA("Frame")) then
 					TweenService:Create(v, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
