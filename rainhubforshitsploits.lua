@@ -31,6 +31,7 @@ local Instances = {
 	RainV2 = Instance.new("ScreenGui"),
 	UiScale = Instance.new("UIScale"),
 	Window = Instance.new("Frame"),
+	MobileCloseButton = nil,
 	WCorner = Instance.new("UICorner"),
 	Navigation = Instance.new("Frame"),
 	NCorner = Instance.new("UICorner"),
@@ -1403,26 +1404,22 @@ UserInputService.InputChanged:Connect(function(input)
 end)
 
 
-
-local Rain = Instances.RainV2
-Rain.Enabled = false
 if UserInputService:GetPlatform() ~= Enum.Platform.Android or Enum.Platform.IOS then 
-	closebutton = Instance.new("TextButton")
-	closebutton.Parent = Rain
-	closebutton.Visible = true
-	closebutton.MouseButton1Click:Connect(function()
-		Instances.Window.Visible = true
-		closebutton.Visible = false
+	Instances.MobileCloseButton = Instance.new("TextButton")
+	Instances.MobileCloseButton.Parent = Instances.RainV2
+	Instances.MobileCloseButton.Visible = true
+	Instances.MobileCloseButton.MouseButton1Click:Connect(function()
+		Rain.Enabled = true
+		Instances.MobileCloseButton.Visible = false
 	end)
+
 	Instances.UiScale.Scale = 0.5
-	
-		
-	
-	
 else
 	Instances.UiScale.Scale = 1
 end
-Rain.Name = "rain"
+
+Instances.RainV2.Name = "rain"
+
 function Interface:BeginMenu(menu_options)
 	if not (Rain.Enabled) then
 		Rain.Enabled = true
@@ -1642,6 +1639,10 @@ function Interface:BeginMenu(menu_options)
 		end)
 
 		Connections["close_interface"] = closeInterface:FindFirstChild("CIActivator").MouseButton1Click:Connect(function()
+			if Instances.MobileCloseButton ~= nil and (not Instances.MobileCloseButton.Visible) then 
+				Instances.MobileCloseButton.Visible = true
+			end
+
 			for i, v in pairs(Rain:GetDescendants()) do 
 				if (v:IsA("Frame")) then
 					TweenService:Create(v, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
@@ -1664,8 +1665,8 @@ function Interface:BeginMenu(menu_options)
 
 			task.wait(.5)
 
-			Instances.Window.Visible = false
-			closebutton.Visible = true
+			Rain.Enabled = false
+			closebutton.Visible = false
 			for i, v in pairs(Connections) do 
 				v:Disconnect()
 			end
