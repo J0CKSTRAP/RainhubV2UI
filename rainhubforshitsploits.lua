@@ -305,6 +305,9 @@ Instances.TBDContainer.CanvasSize = UDim2.new(1, 160, 0, 0)
 Instances.TABDCLayout.Name = "TABDCLayout"
 Instances.TABDCLayout.Parent = Instances.TBDContainer
 Instances.TABDCLayout.Padding = UDim.new(0, 10)
+Instances.TABDCLayout.FillDirection = Enum.FillDirection.Horizontal
+Instances.TABDCLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+Instances.TABDCLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 
 Instances.TabButton_2.Name = "TabButton"
 Instances.TabButton_2.Parent = Instances.TBDContainer
@@ -680,6 +683,9 @@ Instances.TabElementContainer.CanvasSize = UDim2.new(0, 0, 1, 50)
 Instances.TECLayout.Name = "TECLayout"
 Instances.TECLayout.Parent = Instances.TabElementContainer
 Instances.TECLayout.Padding = UDim.new(0, 10)
+Instances.TECLayout.VerticalAlignment = Enum.VerticalAlignment.Top
+Instances.TECLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+
 
 Instances.TECPadding.Name = "TECPadding"
 Instances.TECPadding.Parent = Instances.TabElementContainer
