@@ -1408,6 +1408,16 @@ if UserInputService:GetPlatform() ~= Enum.Platform.Android or Enum.Platform.IOS 
 	Instances.MobileCloseButton = Instance.new("TextButton")
 	Instances.MobileCloseButton.Parent = Instances.RainV2
 	Instances.MobileCloseButton.Visible = true
+	Instances.MobileCloseButton.Text = 'RainHub'
+	Instances.MobileCloseButton.Size = UDim2.new(0, 82, 0, 26)
+	Instances.MobileCloseButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Instances.MobileCloseButton.BackgroundTransparency = 0.25
+	Instances.MobileCloseButton.Position = UDim2.new(0.858053505, 0, 0.24039863, 0)
+	Instances.MobileCloseButton.BorderSizePixel = 0
+	Instances.MobileCloseButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+	Instances.MobileCloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Instances.MobileCloseButton.TextSize = 14
+	Instances.MobileCloseButton.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)	
 	Instances.MobileCloseButton.MouseButton1Click:Connect(function()
 		Rain.Enabled = true
 		Instances.MobileCloseButton.Visible = false
