@@ -1406,7 +1406,7 @@ end)
 
 local Rain = Instances.RainV2
 Rain.Enabled = false
-if UserInputService:GetPlatform() ~= Enum.Platform.Android or Enum.Platform.IOS then 
+--[[if UserInputService:GetPlatform() ~= Enum.Platform.Android or Enum.Platform.IOS then 
 	local closebutton = Instance.new("TextButton")
 	closebutton.Parent = Rain
 	closebutton.Visible = true
@@ -1421,7 +1421,7 @@ if UserInputService:GetPlatform() ~= Enum.Platform.Android or Enum.Platform.IOS 
 	
 else
 	Instances.UiScale.Scale = 1
-end
+end]]--
 Rain.Name = "rain"
 function Interface:BeginMenu(menu_options)
 	if not (Rain.Enabled) then
@@ -3106,7 +3106,6 @@ function Interface:BeginMenu(menu_options)
 end
 
 return Interface
-
 
 
 
