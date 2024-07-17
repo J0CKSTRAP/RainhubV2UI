@@ -202,7 +202,7 @@ Instances.Window.ZIndex = 0
 Instances.Window.Size = UDim2.new(0, 450, 0, 500)
 Instances.Window.Position = UDim2.new(0.349999994, 0, 0.150000006, 0)
 Instances.Window.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
-Instances.Window.Image = ""
+Instances.Window.Image = "rbxassetid://2151741365"
 
 Instances.WCorner.Name = "WCorner"
 Instances.WCorner.Parent = Instances.Window
