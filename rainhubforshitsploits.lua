@@ -1,3 +1,5 @@
+--- 2024/04/02 edited for solara and other shitsploits to the liking
+
 local Interface   = {}
 local Configurations = {}
 
@@ -30,7 +32,7 @@ local interface_name = encode(tostring(Players.LocalPlayer.UserId))]]--
 local Instances = {
 	RainV2 = Instance.new("ScreenGui"),
 	UiScale = Instance.new("UIScale"),
-	Window = Instance.new("Frame"),
+	Window = Instance.new("ImageLabel"),
 	WCorner = Instance.new("UICorner"),
 	Navigation = Instance.new("Frame"),
 	NCorner = Instance.new("UICorner"),
@@ -202,6 +204,7 @@ Instances.Window.ZIndex = 0
 Instances.Window.Size = UDim2.new(0, 450, 0, 500)
 Instances.Window.Position = UDim2.new(0.349999994, 0, 0.150000006, 0)
 Instances.Window.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+Instances.Window.Image = "rbxassetid://3570695787"
 
 Instances.WCorner.Name = "WCorner"
 Instances.WCorner.Parent = Instances.Window
