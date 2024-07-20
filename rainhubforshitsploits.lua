@@ -301,7 +301,7 @@ Instances.TBDContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Instances.TBDContainer.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
 Instances.TBDContainer.ScrollBarThickness = 0
 Instances.TBDContainer.ScrollingDirection = Enum.ScrollingDirection.X
-Instances.TBDContainer.CanvasSize = UDim2.new(1, 280, 0, 0)
+Instances.TBDContainer.CanvasSize = UDim2.new(1, 580, 0, 0)
 
 Instances.TABDCLayout.Name = "TABDCLayout"
 Instances.TABDCLayout.Parent = Instances.TBDContainer
