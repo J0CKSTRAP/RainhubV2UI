@@ -1410,6 +1410,8 @@ local Rain = Instances.RainV2
 local closebutton = Instance.new("TextButton")
 	closebutton.Parent = Rain
 	closebutton.Visible = false
+	closebutton.Position = UDim2.new(0,120,0,100)
+	closebutton.Size = UDim2.new(0,120,0,100)
 	closebutton.MouseButton1Click:Connect(function()
 		Instances.Window.Visible = true
 		closebutton.Visible = false
