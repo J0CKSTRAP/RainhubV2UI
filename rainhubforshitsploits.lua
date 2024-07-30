@@ -23,9 +23,13 @@ local ElementProperties = {
 	Accent = Color3.fromRGB(0, 110, 255) 
 }
 
---[[local encode = (syn and syn.crypt.base64.encode) or crypt.base64encode or crypt.base64_encode or base64.encode
+local cloneref = cloneref or function(o) return o end
 
-local interface_name = encode(tostring(Players.LocalPlayer.UserId))]]--
+
+
+local encode = (syn and syn.crypt.base64.encode) or crypt.base64encode or crypt.base64_encode or base64.encode or function(o) return o end
+
+local interface_name = encode(tostring(Players.LocalPlayer.UserId))
 
 local Instances = {
 	RainV2 = Instance.new("ScreenGui"),
@@ -1407,6 +1411,20 @@ end)
 
 local Rain = Instances.RainV2
 
+if (gethui) then
+    for i, gui in pairs(gethui():GetChildren()) do 
+        if (gui.Name == interface_name) then
+            gui:Destroy()
+        end
+    end
+else
+    for i, gui in pairs(CoreGui:GetChildren()) do 
+        if (gui.Name == interface_name) then
+            gui:Destroy()
+        end
+    end
+end
+
 local closebutton = Instance.new("TextButton")
 	closebutton.Parent = Rain
 	closebutton.Visible = false
@@ -1417,7 +1435,7 @@ local closebutton = Instance.new("TextButton")
 		closebutton.Visible = false
 	end)
 
-Rain.Name = "rain"
+Rain.Name = interface_name
 function Interface:BeginMenu(menu_options)
 	if not (Rain.Enabled) then
 		Rain.Enabled = true
