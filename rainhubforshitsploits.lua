@@ -1441,11 +1441,18 @@ function Interface:BeginMenu(menu_options)
 		Rain.Enabled = true
 	end
 
+	if not gethui then 
+		gethui = function()
+			return game.CoreGui
+		end
+	
+	end
+
 	local menu_options = menu_options or {
 		Title = menu_options.Title or "Rainhub V2"
 	}
 
-	Rain.Parent = cloneref(CoreGui) or game.Players.LocalPlayer.PlayerGui -- for poopy exploit support
+	Rain.Parent = gethui() or cloneref(CoreGui) or game.Players.LocalPlayer.PlayerGui -- for poopy exploit support
 	
 	if Rain.Parent == game.Players.LocalPlayer.PlayerGui then
 		Rain.ResetOnSpawn = false
@@ -3119,7 +3126,6 @@ function Interface:BeginMenu(menu_options)
 end
 
 return Interface
-
 
 
 
