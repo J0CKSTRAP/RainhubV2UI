@@ -1412,28 +1412,28 @@ end)
 local Rain = Instances.RainV2
 
 if (gethui) then
-    for i, gui in pairs(gethui():GetChildren()) do 
-        if (gui.Name == interface_name) then
-            gui:Destroy()
-        end
-    end
+	for i, gui in pairs(gethui():GetChildren()) do 
+		if (gui.Name == interface_name) then
+			gui:Destroy()
+		end
+	end
 else
-    for i, gui in pairs(CoreGui:GetChildren()) do 
-        if (gui.Name == interface_name) then
-            gui:Destroy()
-        end
-    end
+	for i, gui in pairs(CoreGui:GetChildren()) do 
+		if (gui.Name == interface_name) then
+			gui:Destroy()
+		end
+	end
 end
 
 local closebutton = Instance.new("TextButton")
-	closebutton.Parent = Rain
+closebutton.Parent = Rain
+closebutton.Visible = false
+closebutton.Position = UDim2.new(0,120,0,100)
+closebutton.Size = UDim2.new(0,120,0,100)
+closebutton.MouseButton1Click:Connect(function()
+	Instances.Window.Visible = true
 	closebutton.Visible = false
-	closebutton.Position = UDim2.new(0,120,0,100)
-	closebutton.Size = UDim2.new(0,120,0,100)
-	closebutton.MouseButton1Click:Connect(function()
-		Instances.Window.Visible = true
-		closebutton.Visible = false
-	end)
+end)
 
 Rain.Name = interface_name
 function Interface:BeginMenu(menu_options)
@@ -1445,7 +1445,7 @@ function Interface:BeginMenu(menu_options)
 		gethui = function()
 			return game.CoreGui
 		end
-	
+
 	end
 
 	local menu_options = menu_options or {
@@ -1453,7 +1453,7 @@ function Interface:BeginMenu(menu_options)
 	}
 
 	Rain.Parent = gethui() or cloneref(CoreGui) or game.Players.LocalPlayer.PlayerGui -- for poopy exploit support
-	
+
 	if Rain.Parent == game.Players.LocalPlayer.PlayerGui then
 		Rain.ResetOnSpawn = false
 		Rain.DisplayOrder = 999999999
@@ -1637,7 +1637,7 @@ function Interface:BeginMenu(menu_options)
 
 	if (Navigation:WaitForChild("CloseInterface")) then
 		local closeInterface = Navigation.CloseInterface
-		
+
 		closeInterface:FindFirstChild("CIStroke").Transparency = 1
 		closeInterface:FindFirstChild("CIActivator").Position = UDim2.new(0.5, 0, 0.5, 0)
 
@@ -1685,12 +1685,37 @@ function Interface:BeginMenu(menu_options)
 			task.wait(.5)
 
 			Instances.Window.Visible = false
-			closebutton.Visible = true
+			
 			for i, v in pairs(Connections) do 
 				v:Disconnect()
 			end
 		end)
 	end
+	
+	local function toggleGUI()
+		local tweenService = game:GetService("TweenService")
+		local tweenInfo = TweenInfo.new(
+			0.1,
+			Enum.EasingStyle.Sine,
+			Enum.EasingDirection.Out,
+			0,
+			false,
+			0
+		)
+
+		local tween = tweenService:Create(Instances.Window, tweenInfo, {Visible = not Instances.Window.Visible})
+		tween:Play()
+	end
+
+
+	local function onKeyPress(input)
+		if input.KeyCode == Enum.KeyCode.Insert or input.KeyCode == Enum.KeyCode.F8 then
+			toggleGUI()
+		end
+	end
+
+
+	game:GetService("UserInputService").InputBegan:Connect(onKeyPress)
 
 	if (Navigation:WaitForChild("SearchTab")) then
 		local searchButton = Navigation:WaitForChild("SearchTab"):WaitForChild("STActivator")
@@ -2038,9 +2063,9 @@ function Interface:BeginMenu(menu_options)
 				}):Play()
 
 				cBrightness:FindFirstChildOfClass("UIGradient").Color = ColorSequence.new(
-				Color3.fromRGB(currentSelectedCP.Default.R,currentSelectedCP.Default.G,currentSelectedCP.Default.B,
-					Color3.new(0, 0, 0)
-				))
+					Color3.fromRGB(currentSelectedCP.Default.R,currentSelectedCP.Default.G,currentSelectedCP.Default.B,
+						Color3.new(0, 0, 0)
+					))
 			end
 		end)
 
@@ -3126,8 +3151,3 @@ function Interface:BeginMenu(menu_options)
 end
 
 return Interface
-
-
-
-
-
