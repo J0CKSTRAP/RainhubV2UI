@@ -5,7 +5,7 @@ local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
+local Players = game:FindService("Players")
 local CoreGui = game:GetService("CoreGui")
 local InsertService = game:GetService("InsertService")
 
@@ -1452,9 +1452,9 @@ function Interface:BeginMenu(menu_options)
 		Title = menu_options.Title or "Rainhub V2"
 	}
 
-	Rain.Parent = gethui() or cloneref(CoreGui) or game.Players.LocalPlayer.PlayerGui -- for poopy exploit support
+	Rain.Parent = gethui() or cloneref(CoreGui) or game:FindService("Players").LocalPlayer.PlayerGui -- for poopy exploit support
 
-	if Rain.Parent == game.Players.LocalPlayer.PlayerGui then
+	if Rain.Parent == game:FindService("Players").LocalPlayer.PlayerGui then
 		Rain.ResetOnSpawn = false
 		Rain.DisplayOrder = 999999999
 	end -- for poopy cheats lols
